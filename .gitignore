@@ -1,0 +1,16 @@
+.idea/workspace.xml
+.idea/compiler.xml
+.idea/kotlinc.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/inspectionProfiles/
+.idea/dictionaries
+.idea/libraries
+.idea/artifacts
+.idea/tasks.xml
+.idea/codeStyleSettings.xml
+.idea/modules/*
+.idea/modules.xml
+.idea/*.iml
+**/build
+for_tests/
