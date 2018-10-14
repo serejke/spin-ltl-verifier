@@ -1,0 +1,101 @@
+{
+  "name": "nonAtomicUpdateXY",
+  "variables": [
+    {
+      "name": "x",
+      "type": "int",
+      "value": 1
+    },
+    {
+      "name": "y",
+      "type": "int",
+      "value": 2
+    },
+    {
+      "name": "t1",
+      "type": "int",
+      "value": 0
+    },
+    {
+      "name": "t2",
+      "type": "int",
+      "value": 0
+    },
+    {
+      "name": "s1",
+      "type": "int",
+      "value": 0
+    },
+    {
+      "name": "s2",
+      "type": "int",
+      "value": 0
+    }
+  ],
+  "states": [
+    0,
+    1
+  ],
+  "start": 0,
+  "transitions": [
+    {
+      "from": 0,
+      "to": 0,
+      "condition": "s1 = 0",
+      "assignments": [
+        "s1 := 1",
+        "t1 := x"
+      ]
+    },
+    {
+      "from": 0,
+      "to": 0,
+      "condition": "s1 = 1",
+      "assignments": [
+        "s1 := 2",
+        "t1 := t1 + y"
+      ]
+    },
+    {
+      "from": 0,
+      "to": 0,
+      "condition": "s1 = 2",
+      "assignments": [
+        "s1 := 3",
+        "x := t1"
+      ]
+    },
+    {
+      "from": 0,
+      "to": 0,
+      "condition": "s2 = 0",
+      "assignments": [
+        "s2 := 1",
+        "t2 := y"
+      ]
+    },
+    {
+      "from": 0,
+      "to": 0,
+      "condition": "s2 = 1",
+      "assignments": [
+        "s2 := 2",
+        "t2 := t2 + x"
+      ]
+    },
+    {
+      "from": 0,
+      "to": 0,
+      "condition": "s2 = 2",
+      "assignments": [
+        "s2 := 3",
+        "y := t2"
+      ]
+    },
+    {
+      "from": 0,
+      "to": 1,
+      "condition": "s1 = 3 & s2 = 3"
+    }
+  ]
+}

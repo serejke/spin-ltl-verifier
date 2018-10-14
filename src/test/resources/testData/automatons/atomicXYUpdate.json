@@ -1,0 +1,30 @@
+{
+  "name": "atomicUpdateXY",
+  "variables": [
+    {
+      "name": "x",
+      "type": "int",
+      "value": 2
+    },
+    {
+      "name": "y",
+      "type": "int",
+      "value": 1
+    }
+  ],
+  "states": [
+    0,
+    1
+  ],
+  "start": 0,
+  "transitions": [
+    {
+      "from": 0,
+      "to": 1,
+      "assignments": [
+        "x := x + y",
+        "y := y + x"
+      ]
+    }
+  ]
+}

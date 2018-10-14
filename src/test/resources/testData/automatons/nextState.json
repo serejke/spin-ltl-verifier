@@ -1,0 +1,25 @@
+{
+  "name": "nextState",
+  "variables": [
+    {
+      "name": "a",
+      "type": "int",
+      "value": 0
+    }
+  ],
+  "states": [
+    0,
+    1
+  ],
+  "start": 0,
+  "transitions": [
+    {
+      "from": 0,
+      "to": 1,
+      "condition": "a = 0",
+      "assignments": [
+        "a := 1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "simpleLoop",
+  "variables": [
+    {
+      "name": "i",
+      "type": "int",
+      "value": 0
+    },
+    {
+      "name": "a",
+      "type": "int",
+      "value": 1
+    }
+  ],
+  "states": [
+    0,
+    1
+  ],
+  "start": 0,
+  "transitions": [
+    {
+      "from": 0,
+      "to": 0,
+      "condition": "i < 10",
+      "assignments": [
+        "i := i + 1",
+        "a := a * 2"
+      ]
+    },
+    {
+      "from": 0,
+      "to": 1,
+      "condition": "i = 10"
+    }
+  ]
+}

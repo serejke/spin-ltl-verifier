@@ -1,6 +1,12 @@
+buildscript {
+    ext.kotlinVersion = '1.3.0-rc-190'
+}
+
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.0-rc-146'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.0-rc-190'
+    id 'antlr'
+    id 'idea'
 }
 
 group 'verifier'
@@ -14,6 +20,10 @@ repositories {
 }
 
 dependencies {
+    antlr group: 'org.antlr', name: 'antlr4', version: '4.7.1'
+
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
@@ -23,4 +33,40 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+File generatedSourceDir = file('src/generated/main/java')
+
+generateGrammarSource {
+    outputDirectory = generatedSourceDir
+    arguments += ["-visitor", "-long-messages", "-package", "ru.ifmo.ctddev.verifier"]
+}
+
+clean {
+    delete generatedSourceDir, generatedSourceDir
+}
+
+idea {
+    module {
+        generatedSourceDirs += generatedSourceDir
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs generatedSourceDir
+        }
+    }
+}
+
+compileJava.dependsOn(generateGrammarSource)
+compileKotlin.dependsOn(generateGrammarSource)
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.ctddev.verifier.MainKt'
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
